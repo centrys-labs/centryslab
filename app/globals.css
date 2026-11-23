@@ -12,8 +12,15 @@
   --lane-2: #8fb8de;
   --lane-3: #b3c78a;
   --focus: #e9b44c;
-  --rail-main: color-mix(in srgb, var(--ink) 30%, transparent);
+  --rail-main: color-mix(in srgb, var(--ink) 32%, transparent);
   --lw: 20px;
+  --node: 12px;
+  /* Background-coloured halo that punches the dot out of its lane line. */
+  --node-halo: 4px;
+  /* Distance from a row's top edge to the dot's centre; matches the first
+     meta line so the dot sits on the hash, not below it. */
+  --node-y: 0.61rem;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   color-scheme: dark;
 }
 
@@ -42,8 +49,9 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: var(--font-serif), Georgia, serif;
+  font-family: var(--font-body), system-ui, sans-serif;
   font-size: 1.125rem;
+  font-weight: 480;
   line-height: 1.6;
   font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
@@ -130,26 +138,30 @@ h1 {
   max-width: 24em;
   margin: 0 0 1.5rem;
   font-size: 1.4rem;
-  line-height: 1.35;
+  font-weight: 450;
+  line-height: 1.4;
+  text-wrap: pretty;
 }
 
 .tagline--project {
   margin-bottom: 0.9rem;
   font-size: 1.15rem;
+  font-weight: 500;
   line-height: 1.45;
   color: var(--ink);
 }
 
 .copy {
-  max-width: 34em;
+  max-width: 33em;
   margin: 0 0 1.15rem;
   color: var(--ink);
+  text-wrap: pretty;
 }
 
 .meta {
   margin: 0 0 0.85rem;
   font-family: var(--font-mono), ui-monospace, Menlo, Consolas, monospace;
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   font-weight: 400;
   letter-spacing: 0.01em;
   color: var(--mute);
@@ -225,23 +237,35 @@ h1 {
 .rail i.lane2.on::before,
 .rail i.lane3.on::before {
   background: var(--lane-c);
-  opacity: 0.72;
+  opacity: 0.5;
   transform-origin: top;
-  animation: lane-in 900ms ease-out both;
+  animation: lane-in 420ms var(--ease-out) both;
+}
+
+.rail i.lane1.on::before {
+  animation-delay: 40ms;
+}
+
+.rail i.lane2.on::before {
+  animation-delay: 80ms;
+}
+
+.rail i.lane3.on::before {
+  animation-delay: 120ms;
 }
 
 .rail i.n::after {
   content: "";
   position: absolute;
   z-index: 1;
-  top: 0.7rem;
+  top: calc(var(--node-y) - var(--node) / 2);
   left: 50%;
-  width: 13px;
-  height: 13px;
-  margin-left: -6.5px;
+  width: var(--node);
+  height: var(--node);
+  margin-left: calc(var(--node) / -2);
   border-radius: 50%;
   background: var(--lane-c, var(--ink));
-  box-shadow: 0 0 0 5px var(--bg);
+  box-shadow: 0 0 0 var(--node-halo) var(--bg);
 }
 
 .rail i.lane0 {
@@ -275,23 +299,35 @@ h1 {
 
 .fork .lane1 {
   stroke: var(--lane-1);
-  opacity: 0.8;
+  opacity: 0.5;
 }
 
 .fork .lane2 {
   stroke: var(--lane-2);
-  opacity: 0.8;
+  opacity: 0.5;
 }
 
 .fork .lane3 {
   stroke: var(--lane-3);
-  opacity: 0.8;
+  opacity: 0.5;
 }
 
 .fork .draw {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  animation: draw-in 900ms ease-out both;
+  animation: draw-in 560ms var(--ease-out) both;
+}
+
+.fork path:nth-of-type(2) {
+  animation-delay: 40ms;
+}
+
+.fork path:nth-of-type(3) {
+  animation-delay: 80ms;
+}
+
+.fork path:nth-of-type(4) {
+  animation-delay: 120ms;
 }
 
 @keyframes draw-in {
@@ -306,7 +342,7 @@ h1 {
     transform: scaleY(0.2);
   }
   to {
-    opacity: 0.72;
+    opacity: 0.5;
     transform: scaleY(1);
   }
 }
@@ -598,7 +634,8 @@ h1 {
 /* ----------------------------------------------------------------- prose */
 
 .prose {
-  max-width: 34em;
+  max-width: 33em;
+  line-height: 1.65;
 }
 
 .prose > * + * {
@@ -612,6 +649,10 @@ h1 {
 .prose table,
 .prose figure {
   margin: 0 0 1.15em;
+}
+
+.prose p {
+  text-wrap: pretty;
 }
 
 .prose h2,
@@ -860,6 +901,8 @@ h1 {
 @media (max-width: 520px) {
   :root {
     --lw: 16px;
+    --node: 10px;
+    --node-halo: 3px;
   }
 
   .commit,

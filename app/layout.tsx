@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Martian_Mono, Newsreader } from "next/font/google";
+import { Martian_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { site } from "@/lib/content";
 import "./globals.css";
 
@@ -11,13 +12,27 @@ const mono = Martian_Mono({
   fallback: ["ui-monospace", "Menlo", "Consolas", "monospace"],
 });
 
-const serif = Newsreader({
-  subsets: ["latin"],
-  axes: ["opsz"],
-  variable: "--font-serif",
+const bodyFont = localFont({
+  src: [
+    {
+      path: "../node_modules/allo-font/fonts/webfonts/AlloVariable.woff2",
+      weight: "100 900",
+      style: "normal",
+    },
+    {
+      path: "../node_modules/allo-font/fonts/webfonts/Allo-Oblique.woff2",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "../node_modules/allo-font/fonts/webfonts/Allo-SemiBoldOblique.woff2",
+      weight: "600",
+      style: "italic",
+    },
+  ],
+  variable: "--font-body",
   display: "swap",
-  preload: false,
-  fallback: ["Georgia", "serif"],
+  fallback: ["system-ui", "Segoe UI", "sans-serif"],
 });
 
 const googleVerification = process.env.GOOGLE_SITE_VERIFICATION;
@@ -64,7 +79,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${mono.variable} ${serif.variable}`}>
+    <html lang="en" className={`${mono.variable} ${bodyFont.variable}`}>
       <body>
         <a className="skip-link" href="#main">
           Skip to content

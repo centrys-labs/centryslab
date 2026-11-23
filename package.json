@@ -2,12 +2,14 @@
   "name": "centrys-labs-site",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "bun@1.4.4",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
+    "allo-font": "^1.0.3",
     "gray-matter": "^4.0.3",
     "next": "^16.4.6",
     "next-mdx-remote": "^6.0.0",
