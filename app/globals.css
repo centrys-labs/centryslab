@@ -347,115 +347,13 @@ h1 {
   }
 }
 
-/* --------------------------------------------------------------- terminal */
-
-.terminal-block {
-  margin-top: 1.5rem;
-}
-
-.terminal {
-  width: 100%;
-  max-width: 38rem;
-  padding: 0.85rem 0.95rem;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  font-family: var(--font-mono), ui-monospace, Menlo, Consolas, monospace;
-  font-size: 0.8rem;
-  line-height: 1.6;
-  cursor: text;
-}
-
-.terminal:focus-within {
-  outline: 2px solid var(--focus);
-  outline-offset: 3px;
-}
-
-.terminal__output {
-  max-height: 15rem;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-
-.terminal__line {
-  margin: 0;
-}
-
-.terminal__line--echo {
-  color: var(--mute);
-}
-
-.terminal__line a {
-  text-decoration-color: color-mix(in srgb, var(--ink) 45%, transparent);
-}
-
-.terminal__hint {
-  margin: 0;
-  color: var(--mute);
-}
-
-.terminal__prompt {
-  display: flex;
-  gap: 0.55rem;
-  align-items: baseline;
-  margin-top: 0.35rem;
-}
-
-.terminal__prompt span {
-  color: var(--lane-1);
-}
-
-.terminal__input {
-  flex: 1;
-  min-width: 0;
-  padding: 0.15rem 0;
-  border: 0;
-  background: none;
-  color: var(--ink);
-  font: inherit;
-  caret-color: var(--lane-1);
-}
-
-.terminal__input:focus {
-  outline: none;
-}
-
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin: 0.85rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.chip {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  padding: 0.4rem 0.65rem;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: transparent;
-  color: var(--ink);
-  font-family: var(--font-mono), ui-monospace, Menlo, Consolas, monospace;
-  font-size: 0.72rem;
-  cursor: pointer;
-}
-
-.chip:hover {
-  border-color: var(--lane-1);
-}
-
 /* ------------------------------------------------------------ page pieces */
 
 .hero-links {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem 1.25rem;
-  margin: 1.6rem 0 0;
+  margin: 1.9rem 0 0;
   padding: 0;
   list-style: none;
   font-family: var(--font-mono), ui-monospace, Menlo, Consolas, monospace;

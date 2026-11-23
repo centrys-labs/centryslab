@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { terminalCopy } from "@/lib/content";
+import { copyLabels } from "@/lib/content";
 
 /**
  * Adds a language label and a copy button to every code block inside the
@@ -35,14 +35,14 @@ export default function CodeBlock({ scope = "[data-post-body]" }: { scope?: stri
       const button = document.createElement("button");
       button.type = "button";
       button.className = "codeblock__copy";
-      button.textContent = terminalCopy.copy;
+      button.textContent = copyLabels.copy;
 
       button.addEventListener("click", async () => {
         try {
           await navigator.clipboard.writeText(pre.innerText);
-          status.textContent = terminalCopy.ok;
+          status.textContent = copyLabels.ok;
         } catch {
-          status.textContent = terminalCopy.copyFailed;
+          status.textContent = copyLabels.copyFailed;
         }
         window.setTimeout(() => {
           status.textContent = "";

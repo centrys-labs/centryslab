@@ -163,18 +163,7 @@ export const errorPage = {
   home: "git checkout main",
 };
 
-export const terminalCopy = {
-  hint: "Type a command, or tap one below.",
-  prompt: "$",
-  label: "Terminal command",
-  noScript: "Enable JavaScript to use the terminal.",
-  help: "help  ls  whoami  gitway  repolith  stagezero  contact  curl centrys.ai.id  clear",
-  ls: "gitway/  repolith/  stagezero/  blog/  README.md",
-  whoami: "a small studio in Indonesia, making software we wanted to use ourselves",
-  sudo: "nice try.",
-  notFound: (command: string) => `command not found: ${command} (try help)`,
-  emptyBlog: "No commits yet.",
-  consoleLine: `Say hi: ${site.email}`,
+export const copyLabels = {
   ok: "Copied",
   copy: "Copy",
   copyFailed: "Select the code and copy it",
