@@ -1,6 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Martian_Mono } from "next/font/google";
 import localFont from "next/font/local";
+import Analytics from "@/components/Analytics";
+import CookieBanner from "@/components/CookieBanner";
+import { ConsentProvider } from "@/components/ConsentProvider";
 import { site } from "@/lib/content";
 import "./globals.css";
 
@@ -81,10 +84,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${mono.variable} ${bodyFont.variable}`}>
       <body>
-        <a className="skip-link" href="#main">
-          Skip to content
-        </a>
-        {children}
+        <ConsentProvider>
+          <a className="skip-link" href="#main">
+            Skip to content
+          </a>
+          {children}
+          <CookieBanner />
+          <Analytics />
+        </ConsentProvider>
       </body>
     </html>
   );

@@ -35,18 +35,32 @@ export default function CodeBlock({ scope = "[data-post-body]" }: { scope?: stri
       const button = document.createElement("button");
       button.type = "button";
       button.className = "codeblock__copy";
-      button.textContent = copyLabels.copy;
+
+      const copyLabel = document.createElement("span");
+      copyLabel.className = "codeblock__label";
+      copyLabel.textContent = copyLabels.copy;
+
+      const doneLabel = document.createElement("span");
+      doneLabel.className = "codeblock__label codeblock__label--done";
+      doneLabel.textContent = copyLabels.ok;
+      doneLabel.setAttribute("aria-hidden", "true");
+
+      button.append(copyLabel, doneLabel);
 
       button.addEventListener("click", async () => {
         try {
           await navigator.clipboard.writeText(pre.innerText);
-          status.textContent = copyLabels.ok;
+          button.dataset.copied = "true";
+          status.textContent = "";
+          window.setTimeout(() => {
+            delete button.dataset.copied;
+          }, 1800);
         } catch {
           status.textContent = copyLabels.copyFailed;
+          window.setTimeout(() => {
+            status.textContent = "";
+          }, 2600);
         }
-        window.setTimeout(() => {
-          status.textContent = "";
-        }, 1800);
       });
 
       bar.append(label, status, button);

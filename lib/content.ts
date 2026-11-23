@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const site = {
   name: "Centrys Labs",
-  url: "https://centrys.ai.id",
+  url: "https://centryslab.ai.id",
   tagline: "For the things worth building.",
   description:
     "Centrys Labs makes software we wanted to use ourselves: gitway, repolith and stagezero.",
@@ -10,7 +10,7 @@ export const site = {
   positioning:
     "We build software, tools, and infrastructure for developers and beyond.",
   location: "Indonesia",
-  email: "help@centrys.ai.id",
+  email: "help@centryslab.ai.id",
   github: "https://github.com/centrys-labs",
   repositories: "https://github.com/orgs/centrys-labs/repositories",
   themeColor: "#1e2327",
@@ -85,14 +85,15 @@ export const projects: Project[] = [
 
 export const hero = {
   hash: "c0ffee1",
-  meta: "(HEAD -> main) Centrys Labs <help@centrys.ai.id>",
+  meta: "(HEAD -> main) Centrys Labs <help@centryslab.ai.id>",
   heading: "For the things worth building.",
   tagline:
     "We’re a small studio in Indonesia making software we wanted to use ourselves. Tools and infrastructure for developers, and beyond.",
   links: [
     { label: "Browse the repositories", href: site.repositories, external: true },
-    { label: "centrys.ai.id", href: site.url, external: true },
+    { label: "centryslab.ai.id", href: site.url, external: true },
     { label: "Blog", href: "/blog", external: false },
+    { label: "About", href: "/about", external: false },
   ],
 };
 
@@ -115,6 +116,87 @@ export const contact = {
     { text: "follow along on GitHub", href: site.github },
     { text: "." },
   ],
+};
+
+export const consent = {
+  label: "Analytics consent",
+  text: "Analytics cookies show us which pages get read. They load only if you accept; declining leaves the site exactly as it is.",
+  accept: "Accept analytics",
+  decline: "Decline",
+  settings: "Cookie settings",
+  privacy: "Privacy",
+};
+
+export const newsletter = {
+  heading: "Notes in your inbox",
+  blurb:
+    "New posts and releases, plus the occasional note on what we're building. Double opt-in, unsubscribe any time.",
+  emailLabel: "Email address",
+  placeholder: "you@example.com",
+  submit: "Subscribe",
+  sending: "Sending…",
+  ok: "Check your inbox to confirm.",
+  invalid: "That email doesn't look right.",
+  unconfigured: "The newsletter isn't connected yet.",
+  rateLimited: "Too many attempts. Try again later.",
+  failed: "That didn't go through. Try again in a moment.",
+  privacyNote: "We keep your address with Buttondown.",
+};
+
+export const privacyPage = {
+  hash: "9a9e901",
+  meta: "(privacy) Centrys Labs",
+  heading: "Privacy",
+  tagline: "What this site stores, and what it leaves alone.",
+  updated: "Last updated 24 November 2026.",
+  sections: [
+    {
+      heading: "What this site stores",
+      paragraphs: [
+        "There is no account and no tracking by default. Your analytics choice is kept in your browser's local storage under centryslab-consent-v1, so the banner doesn't ask on every visit.",
+      ],
+    },
+    {
+      heading: "Analytics",
+      paragraphs: [
+        "If you accept, we load PostHog and record page views. PostHog stores an identifier in a first-party cookie and local storage, which is how returning visits are told apart. We turn off autocapture and session recording, and PostHog honours Do Not Track.",
+        "If you decline, no analytics script is loaded. Withdrawing consent later through Cookie settings applies an opt-out and resets the stored identifier.",
+      ],
+    },
+    {
+      heading: "Newsletter",
+      paragraphs: [
+        "The signup form on the blog sends your email address to Buttondown, our newsletter provider. Buttondown keeps the subscriber list and sends the confirmation email. We also forward the request's IP address so Buttondown can check for spam.",
+        "We use the address only to send the newsletter. Subscriptions use double opt-in, and every email includes an unsubscribe link that removes you from the list.",
+      ],
+    },
+    {
+      heading: "What we don't do",
+      paragraphs: [
+        "No advertising cookies, no selling or renting your data, and no cross-site profiles.",
+      ],
+    },
+    {
+      heading: "Changes to this page",
+      paragraphs: [
+        "If what we collect changes, this page changes with it and the date at the top moves.",
+      ],
+    },
+  ],
+  contactLabel: "Questions about this page:",
+};
+
+export const about = {
+  hash: "ab0071",
+  meta: "(about) Centrys Labs",
+  heading: "About Centrys Labs",
+  tagline:
+    "A small software studio in Indonesia, building the tools we wanted and couldn’t find.",
+  paragraphs: [
+    "We make software, tools and infrastructure for developers and beyond. Every project starts as something we needed ourselves, so the first user of anything we ship is us.",
+    "We build in the open. The code, the issues and the releases are public, because a tool worth using is a tool worth reading, running and changing.",
+  ],
+  projectsLabel: "The projects",
 };
 
 export const footer = {
@@ -171,7 +253,7 @@ export const copyLabels = {
 
 /**
  * The body served to curl and Wget. One source of truth: the middleware, the
- * terminal's `curl centrys.ai.id` command and the tests all read this.
+ * proxy's curl response read this.
  */
 export function plainTextSite(): string {
   const pad = Math.max(...projects.map((project) => project.name.length));

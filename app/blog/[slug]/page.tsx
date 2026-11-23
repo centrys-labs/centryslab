@@ -109,7 +109,7 @@ export default async function PostPage({ params }: PageProps) {
 
           <footer className="post-footer">
             <p>{blog.readInTerminal}</p>
-            <code>curl centrys.ai.id/blog/{post.slug}</code>
+            <code>curl centryslab.ai.id/blog/{post.slug}</code>
             <ul>
               <li>
                 <Link href="/blog">{blog.backToBlog}</Link>

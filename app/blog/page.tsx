@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Commit from "@/components/Commit";
 import Footer from "@/components/Footer";
+import NewsletterForm from "@/components/NewsletterForm";
 import { getPosts } from "@/lib/blog";
-import { blog, buildMetadata } from "@/lib/content";
+import { blog, buildMetadata, newsletter } from "@/lib/content";
 
 export const metadata = buildMetadata({
   title: blog.title,
@@ -16,6 +17,12 @@ export default function BlogIndexPage() {
   return (
     <>
       <main id="main" className="shell">
+        <nav className="crumbs" aria-label="Breadcrumb">
+          <Link href="/">{blog.crumbs.home}</Link>
+          <span aria-hidden="true">/</span>
+          <span>{blog.crumbs.blog}</span>
+        </nav>
+
         <header className="page-head">
           <h1>{blog.title}</h1>
           <p className="tagline tagline--project">{blog.intro}</p>
@@ -42,6 +49,14 @@ export default function BlogIndexPage() {
             </Commit>
           ))
         )}
+
+        <Commit on={[0]} lane={0}>
+          <h2 className="post-title" id="newsletter">
+            {newsletter.heading}
+          </h2>
+          <p className="copy">{newsletter.blurb}</p>
+          <NewsletterForm />
+        </Commit>
       </main>
       <Footer />
     </>

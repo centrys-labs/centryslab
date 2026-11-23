@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Commit, { CommitMeta } from "@/components/Commit";
+import ContactLine from "@/components/ContactLine";
+import Footer from "@/components/Footer";
 import ForkMerge from "@/components/ForkMerge";
 import JsonLd from "@/components/JsonLd";
 import ProjectCommit from "@/components/ProjectCommit";
 import {
   buildMetadata,
   contact,
-  footer,
   hero,
   projects,
   site,
@@ -66,25 +67,11 @@ export default function HomePage() {
           <h2 className="post-title" id="contact">
             {contact.heading}
           </h2>
-          <p className="copy">
-            {contact.parts.map((part, index) =>
-              part.href ? (
-                <a key={index} href={part.href} rel="noreferrer">
-                  {part.text}
-                </a>
-              ) : (
-                <span key={index}>{part.text}</span>
-              ),
-            )}
-          </p>
+          <ContactLine />
         </Commit>
       </main>
 
-      <footer className="site-footer">
-        <div className="shell">
-          <p>{footer.line}</p>
-        </div>
-      </footer>
+      <Footer />
 
       <JsonLd data={organization()} />
       <JsonLd data={website()} />
